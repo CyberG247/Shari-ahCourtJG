@@ -6,56 +6,73 @@ import Link from "next/link"
 
 export default function AboutPage() {
   const formerGrandKadis = [
-    { name: "Hon. Justice Abdullahi Yusuf", tenure: "2010-2015", image: "former-kadi-1" },
-    { name: "Hon. Justice Muhammad Bello", tenure: "2015-2020", image: "former-kadi-2" },
+    { name: "Name of Kadi", tenure: "2010-2015", image: "former-kadi-1" },
+    { name: "Name of Kadi", tenure: "2015-2020", image: "former-kadi-2" },
   ]
 
   const currentKadis = [
-    { name: "Hon. Kadi Abdullahi Musa", specialization: "Senior Kadi & Administrative Head", experience: "15 years" },
-    { name: "Hon. Kadi Fatima Ibrahim", specialization: "Family Law & Personal Status", experience: "12 years" },
-    { name: "Hon. Kadi Muhammad Sani", specialization: "Civil Appeals & Commercial Law", experience: "10 years" },
-    { name: "Hon. Kadi Aisha Garba", specialization: "Inheritance & Property Disputes", experience: "8 years" },
-    { name: "Hon. Kadi Usman Aliyu", specialization: "Criminal Appeals & Public Law", experience: "7 years" },
+    { name: "Name of Kadi", specialization: "Senior Kadi & Administrative Head", experience: "15 years" },
+    { name: "Name of Kadi", specialization: "Family Law & Personal Status", experience: "12 years" },
+    { name: "Name of Kadi", specialization: "Civil Appeals & Commercial Law", experience: "10 years" },
+    { name: "Name of Kadi", specialization: "Inheritance & Property Disputes", experience: "8 years" },
+    { name: "Name of Kadi", specialization: "Criminal Appeals & Public Law", experience: "7 years" },
   ]
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-green-800 text-white shadow-lg">
+      <header className="bg-white text-black shadow-lg border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <Scale className="w-8 h-8 text-green-800" />
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border">
+                <img 
+                  src="/nigeria-logo.png" 
+                  alt="Nigerian Coat of Arms" 
+                  className="w-12 h-12 object-contain"
+                />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Shari'ah Court of Appeal</h1>
-                <p className="text-green-100">Jigawa State, Nigeria</p>
+                <h1 className="text-xl font-bold text-black">Shari'ah Court of Appeal</h1>
+                <p className="text-gray-600">Jigawa State, Nigeria</p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-6">
-              <Link href="/" className="hover:text-green-200 transition-colors">
+              <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Home
               </Link>
-              <Link href="/about" className="text-green-200 font-semibold">
+              <Link href="/about" className="px-3 py-2 bg-green-100 text-green-600 rounded-lg font-semibold">
                 About Us
               </Link>
-              <Link href="/management" className="hover:text-green-200 transition-colors">
+              <Link href="/management" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Management
               </Link>
-              <Link href="/courts" className="hover:text-green-200 transition-colors">
+              <Link href="/courts" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Courts
               </Link>
-              <Link href="/services" className="hover:text-green-200 transition-colors">
-                E-Services
-              </Link>
-              <Link href="/media" className="hover:text-green-200 transition-colors">
+              <Link href="/media" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Media
+              </Link>
+              <Link href="/services" className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:shadow-lg transition-all duration-300 font-semibold">
+                E-Services
               </Link>
             </nav>
           </div>
         </div>
       </header>
+
+      {/* Navigation Breadcrumbs */}
+      <div className="bg-gray-50 border-b">
+        <div className="container mx-auto px-4 py-3">
+          <nav className="flex items-center space-x-4 text-sm text-gray-600">
+            <Link href="/" className="hover:text-green-600 transition-colors">
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-green-600 font-medium">About Us</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Page Header */}
       <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">

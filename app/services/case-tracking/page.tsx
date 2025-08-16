@@ -15,7 +15,7 @@ export default function CaseTrackingPage() {
   const [trackingId, setTrackingId] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [isSearching, setIsSearching] = useState(false)
-  const [caseData, setCaseData] = useState(null)
+  const [caseData, setCaseData] = useState<any>(null)
   const [showDemo, setShowDemo] = useState(false)
 
   const demoCase = {
@@ -27,7 +27,7 @@ export default function CaseTrackingPage() {
     submissionDate: "2024-01-15",
     estimatedCompletion: "2024-01-22",
     currentStage: "Document Verification",
-    applicant: "Alhaji Musa Ibrahim",
+    applicant: "Name of Applicant",
     contact: "+234 803 123 4567",
     timeline: [
       {
@@ -256,27 +256,27 @@ export default function CaseTrackingPage() {
                       <FileText className="w-6 h-6 mr-2 text-blue-600" />
                       Case Overview
                     </div>
-                    <Badge className={getStatusColor(caseData.status)}>{caseData.status}</Badge>
+                    <Badge className={getStatusColor(caseData?.status || '')}>{caseData?.status}</Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
                       <Label className="text-sm font-medium text-gray-500">Case ID</Label>
-                      <p className="text-lg font-semibold">{caseData.id}</p>
+                      <p className="text-lg font-semibold">{caseData?.id}</p>
                     </div>
                     <div>
                       <Label className="text-sm font-medium text-gray-500">Case Type</Label>
-                      <p className="text-lg font-semibold">{caseData.type}</p>
+                      <p className="text-lg font-semibold">{caseData?.type}</p>
                     </div>
                     <div>
                       <Label className="text-sm font-medium text-gray-500">Submitted</Label>
-                      <p className="text-lg font-semibold">{new Date(caseData.submissionDate).toLocaleDateString()}</p>
+                      <p className="text-lg font-semibold">{caseData?.submissionDate ? new Date(caseData?.submissionDate).toLocaleDateString() : ''}</p>
                     </div>
                     <div>
                       <Label className="text-sm font-medium text-gray-500">Est. Completion</Label>
                       <p className="text-lg font-semibold">
-                        {new Date(caseData.estimatedCompletion).toLocaleDateString()}
+                        {caseData?.estimatedCompletion ? new Date(caseData?.estimatedCompletion).toLocaleDateString() : ''}
                       </p>
                     </div>
                   </div>
@@ -284,10 +284,10 @@ export default function CaseTrackingPage() {
                   <div className="mt-6">
                     <div className="flex justify-between items-center mb-2">
                       <Label className="text-sm font-medium text-gray-500">Progress</Label>
-                      <span className="text-sm font-medium">{caseData.progress}%</span>
+                      <span className="text-sm font-medium">{caseData?.progress}%</span>
                     </div>
-                    <Progress value={caseData.progress} className="h-3" />
-                    <p className="text-sm text-gray-600 mt-2">Current Stage: {caseData.currentStage}</p>
+                    <Progress value={caseData?.progress || 0} className="h-3" />
+                    <p className="text-sm text-gray-600 mt-2">Current Stage: {caseData?.currentStage}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -302,7 +302,7 @@ export default function CaseTrackingPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
-                    {caseData.timeline.map((item, index) => (
+                    {caseData?.timeline?.map((item: any, index: number) => (
                       <div key={index} className="flex items-start space-x-4">
                         <div
                           className={`w-4 h-4 rounded-full mt-1 flex-shrink-0 ${
@@ -349,7 +349,7 @@ export default function CaseTrackingPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {caseData.documents.map((doc, index) => (
+                      {caseData?.documents?.map((doc: any, index: number) => (
                         <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                           <div>
                             <p className="font-medium">{doc.name}</p>
@@ -376,17 +376,17 @@ export default function CaseTrackingPage() {
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
                           <span className="font-medium">Application Fee</span>
-                          <span className="text-2xl font-bold">₦{caseData.fee.amount.toLocaleString()}</span>
+                          <span className="text-2xl font-bold">₦{caseData?.fee?.amount?.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span>Status</span>
-                          <Badge className={getStatusColor(caseData.fee.status)}>{caseData.fee.status}</Badge>
+                          <Badge className={getStatusColor(caseData?.fee?.status || '')}>{caseData?.fee?.status}</Badge>
                         </div>
                         <div className="flex justify-between items-center">
                           <span>Due Date</span>
-                          <span>{caseData.fee.dueDate}</span>
+                          <span>{caseData?.fee?.dueDate}</span>
                         </div>
-                        {caseData.fee.status === "Pending" && (
+                        {caseData?.fee?.status === "Pending" && (
                           <Button className="w-full bg-green-600 hover:bg-green-700">Pay Now</Button>
                         )}
                       </div>
@@ -425,7 +425,7 @@ export default function CaseTrackingPage() {
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Next Action Required:</strong> {caseData.nextAction}
+                  <strong>Next Action Required:</strong> {caseData?.nextAction}
                 </AlertDescription>
               </Alert>
 
@@ -616,4 +616,56 @@ export default function CaseTrackingPage() {
       </footer>
     </div>
   )
+}
+
+// Add import at the top
+import { createReceiptPDF } from '@/lib/pdf-utils'
+
+// Add this function for downloading case status report
+const downloadCaseStatusPDF = async (caseData: any) => {
+  try {
+    const statusHTML = `
+      <div style="padding: 40px; font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #166534; font-size: 24px; margin-bottom: 10px;">CASE STATUS REPORT</h1>
+          <h2 style="color: #166534; font-size: 18px; margin-bottom: 5px;">Shari'ah Court of Appeal</h2>
+          <h3 style="color: #666; font-size: 14px;">Jigawa State, Nigeria</h3>
+        </div>
+        
+        <div style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+          <div style="margin-bottom: 15px;">
+            <strong>Case Number:</strong> ${caseData.caseNumber}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Case Title:</strong> ${caseData.title}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Current Status:</strong> <span style="color: #166534; font-weight: bold;">${caseData.status}</span>
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Filed Date:</strong> ${caseData.filedDate}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Next Hearing:</strong> ${caseData.nextHearing || 'To be scheduled'}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Assigned Judge:</strong> ${caseData.judge}
+          </div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+          <p style="font-size: 12px; color: #666;">Generated on ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}</p>
+          <p style="font-size: 12px; color: #666;">This report is computer generated from the Court Management System</p>
+        </div>
+      </div>
+    `
+    
+    await generatePDFFromHTML(statusHTML, {
+      filename: `Case_Status_${caseData.caseNumber}_${new Date().toISOString().split('T')[0]}.pdf`,
+      scale: 2
+    })
+  } catch (error) {
+    console.error('Error generating case status PDF:', error)
+    alert('Error generating PDF. Please try again.')
+  }
 }

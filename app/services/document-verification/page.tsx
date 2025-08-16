@@ -26,13 +26,13 @@ export default function DocumentVerificationPage() {
   const [verificationMethod, setVerificationMethod] = useState("qr")
   const [documentId, setDocumentId] = useState("")
   const [isVerifying, setIsVerifying] = useState(false)
-  const [verificationResult, setVerificationResult] = useState(null)
-  const [uploadedFile, setUploadedFile] = useState(null)
+  const [verificationResult, setVerificationResult] = useState<any>(null)
+  const [uploadedFile, setUploadedFile] = useState<any>(null)
 
   const demoDocument = {
     id: "MC-2024-0001",
     type: "Islamic Marriage Certificate",
-    issuedTo: "Musa Ibrahim & Fatima Abdullahi",
+    issuedTo: "Name of Groom & Name of Bride",
     issueDate: "2024-01-20",
     issuedBy: "Shari'ah Court of Appeal, Jigawa State",
     status: "Valid",
@@ -41,13 +41,13 @@ export default function DocumentVerificationPage() {
     blockchainHash: "0x1a2b3c4d5e6f...",
     qrCode: "QR-MC-2024-0001-VERIFIED",
     details: {
-      groomName: "Musa Ibrahim",
-      brideName: "Fatima Abdullahi",
+      groomName: "Name of Groom",
+    brideName: "Name of Bride",
       marriageDate: "2023-12-15",
       marriageLocation: "Central Mosque, Dutse",
-      witness1: "Alhaji Ahmad Suleiman",
-      witness2: "Hajiya Zainab Muhammad",
-      registrar: "Alhaji Ibrahim Garba",
+      witness1: "Name of Witness",
+      witness2: "Name of Witness",
+    registrar: "Name of Registrar",
     },
   }
 
@@ -64,7 +64,7 @@ export default function DocumentVerificationPage() {
     }
   }
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (event: any) => {
     const file = event.target.files[0]
     if (file) {
       setUploadedFile(file)
@@ -303,7 +303,7 @@ export default function DocumentVerificationPage() {
         <section className="py-8">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              {verificationResult.status === "Valid" ? (
+              {verificationResult?.status === "Valid" ? (
                 <Card className="border-green-200 bg-green-50">
                   <CardHeader>
                     <CardTitle className="flex items-center text-green-800">
@@ -316,20 +316,20 @@ export default function DocumentVerificationPage() {
                       <div className="space-y-4">
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Document Type</Label>
-                          <p className="text-lg font-semibold">{verificationResult.type}</p>
+                          <p className="text-lg font-semibold">{verificationResult?.type}</p>
                         </div>
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Document ID</Label>
-                          <p className="text-lg font-semibold">{verificationResult.id}</p>
+                          <p className="text-lg font-semibold">{verificationResult?.id}</p>
                         </div>
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Issued To</Label>
-                          <p className="text-lg font-semibold">{verificationResult.issuedTo}</p>
+                          <p className="text-lg font-semibold">{verificationResult?.issuedTo}</p>
                         </div>
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Issue Date</Label>
                           <p className="text-lg font-semibold">
-                            {new Date(verificationResult.issueDate).toLocaleDateString()}
+                            {verificationResult?.issueDate ? new Date(verificationResult.issueDate).toLocaleDateString() : ''}
                           </p>
                         </div>
                       </div>
@@ -337,19 +337,19 @@ export default function DocumentVerificationPage() {
                       <div className="space-y-4">
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Issued By</Label>
-                          <p className="text-lg font-semibold">{verificationResult.issuedBy}</p>
+                          <p className="text-lg font-semibold">{verificationResult?.issuedBy}</p>
                         </div>
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Verification Date</Label>
                           <p className="text-lg font-semibold">
-                            {new Date(verificationResult.verificationDate).toLocaleString()}
+                            {verificationResult?.verificationDate ? new Date(verificationResult.verificationDate).toLocaleString() : ''}
                           </p>
                         </div>
                         <div>
                           <Label className="text-sm font-medium text-gray-500">Status</Label>
                           <Badge className="bg-green-100 text-green-800 text-lg px-3 py-1">
                             <CheckCircle className="w-4 h-4 mr-1" />
-                            {verificationResult.status}
+                            {verificationResult?.status}
                           </Badge>
                         </div>
                       </div>
@@ -360,22 +360,22 @@ export default function DocumentVerificationPage() {
                       <h4 className="font-semibold text-lg mb-4">Document Details</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
-                          <span className="font-medium">Groom:</span> {verificationResult.details.groomName}
+                          <span className="font-medium">Groom:</span> {verificationResult?.details?.groomName}
                         </div>
                         <div>
-                          <span className="font-medium">Bride:</span> {verificationResult.details.brideName}
+                          <span className="font-medium">Bride:</span> {verificationResult?.details?.brideName}
                         </div>
                         <div>
-                          <span className="font-medium">Marriage Date:</span> {verificationResult.details.marriageDate}
+                          <span className="font-medium">Marriage Date:</span> {verificationResult?.details?.marriageDate}
                         </div>
                         <div>
-                          <span className="font-medium">Location:</span> {verificationResult.details.marriageLocation}
+                          <span className="font-medium">Location:</span> {verificationResult?.details?.marriageLocation}
                         </div>
                         <div>
-                          <span className="font-medium">Witness 1:</span> {verificationResult.details.witness1}
+                          <span className="font-medium">Witness 1:</span> {verificationResult?.details?.witness1}
                         </div>
                         <div>
-                          <span className="font-medium">Witness 2:</span> {verificationResult.details.witness2}
+                          <span className="font-medium">Witness 2:</span> {verificationResult?.details?.witness2}
                         </div>
                       </div>
                     </div>
@@ -387,12 +387,12 @@ export default function DocumentVerificationPage() {
                         <div>
                           <span className="font-medium">Digital Signature:</span>
                           <br />
-                          <code className="bg-white px-1 rounded">{verificationResult.digitalSignature}</code>
+                          <code className="bg-white px-1 rounded">{verificationResult?.digitalSignature}</code>
                         </div>
                         <div>
                           <span className="font-medium">Blockchain Hash:</span>
                           <br />
-                          <code className="bg-white px-1 rounded">{verificationResult.blockchainHash}</code>
+                          <code className="bg-white px-1 rounded">{verificationResult?.blockchainHash}</code>
                         </div>
                       </div>
                     </div>
@@ -419,7 +419,7 @@ export default function DocumentVerificationPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-red-700 mb-4">
-                      {verificationResult.error ||
+                      {verificationResult?.error ||
                         "The document could not be verified. It may be invalid, tampered with, or not issued by this court."}
                     </p>
 
@@ -597,4 +597,56 @@ export default function DocumentVerificationPage() {
       </footer>
     </div>
   )
+}
+
+// Add verification report PDF download
+const downloadVerificationReport = async (verificationData: any) => {
+  try {
+    const reportHTML = `
+      <div style="padding: 40px; font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #166534; font-size: 24px; margin-bottom: 10px;">DOCUMENT VERIFICATION REPORT</h1>
+          <h2 style="color: #166534; font-size: 18px; margin-bottom: 5px;">Shari'ah Court of Appeal</h2>
+          <h3 style="color: #666; font-size: 14px;">Jigawa State, Nigeria</h3>
+        </div>
+        
+        <div style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+          <div style="margin-bottom: 15px;">
+            <strong>Verification ID:</strong> ${verificationData.verificationId}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Document Type:</strong> ${verificationData.documentType}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Document Number:</strong> ${verificationData.documentNumber}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Verification Status:</strong> 
+            <span style="color: ${verificationData.isValid ? '#166534' : '#dc2626'}; font-weight: bold;">
+              ${verificationData.isValid ? 'VALID' : 'INVALID'}
+            </span>
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Verified On:</strong> ${new Date().toLocaleDateString()}
+          </div>
+          <div style="margin-bottom: 15px;">
+            <strong>Digital Signature:</strong> ${verificationData.digitalSignature}
+          </div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+          <p style="font-size: 12px; color: #666;">This verification report is digitally signed and authenticated</p>
+          <p style="font-size: 12px; color: #666;">Generated from the Court Document Verification System</p>
+        </div>
+      </div>
+    `
+    
+    await generatePDFFromHTML(reportHTML, {
+      filename: `Verification_Report_${verificationData.verificationId}.pdf`,
+      scale: 2
+    })
+  } catch (error) {
+    console.error('Error generating verification report PDF:', error)
+    alert('Error generating PDF. Please try again.')
+  }
 }

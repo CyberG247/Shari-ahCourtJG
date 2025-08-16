@@ -24,6 +24,8 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import CertificateTemplate from "./certificate-template"
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
 
 export default function MarriageCertificatePage() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -50,7 +52,7 @@ export default function MarriageCertificatePage() {
 
   const [paymentStatus, setPaymentStatus] = useState("pending") // pending, processing, confirmed, failed
   const [certificateGenerated, setCertificateGenerated] = useState(false)
-  const [certificateData, setCertificateData] = useState(null)
+  const [certificateData, setCertificateData] = useState<any>(null)
   const [paymentReference, setPaymentReference] = useState("")
 
   const totalSteps = 4
@@ -118,7 +120,7 @@ export default function MarriageCertificatePage() {
       marriageLocation: formData.marriageLocation,
       witness1: formData.witness1Name,
       witness2: formData.witness2Name,
-      registrar: "Alhaji Ahmad Suleiman, Chief Registrar",
+      registrar: "Name of Registrar, Chief Registrar",
       digitalSignature: `SHA256:${Math.random().toString(36).substring(2, 15)}`,
       qrCode: `QR-MC-${Date.now()}`,
       status: "Valid",
@@ -128,9 +130,111 @@ export default function MarriageCertificatePage() {
     setCertificateGenerated(true)
   }
 
-  const downloadCertificate = () => {
-    // In a real application, this would generate and download a PDF
-    const certificateContent = `
+  const downloadCertificate = async () => {
+    if (!certificateData) return;
+    
+    try {
+      // Create a temporary div with the certificate content for PDF generation
+      const certificateElement = document.createElement('div');
+      certificateElement.innerHTML = `
+        <div style="padding: 40px; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #166534; font-size: 28px; margin-bottom: 10px;">ISLAMIC MARRIAGE CERTIFICATE</h1>
+            <h2 style="color: #166534; font-size: 20px; margin-bottom: 5px;">Shari'ah Court of Appeal</h2>
+            <h3 style="color: #666; font-size: 16px;">Jigawa State, Nigeria</h3>
+          </div>
+          
+          <div style="border: 2px solid #166534; padding: 30px; margin: 20px 0;">
+            <div style="text-align: center; margin-bottom: 25px;">
+              <p style="font-size: 18px; font-weight: bold; color: #166534;">Certificate ID: ${certificateData.certificateId}</p>
+              <p style="font-size: 14px; color: #666;">Issue Date: ${new Date(certificateData.issueDate).toLocaleDateString()}</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <p style="font-size: 16px; text-align: center; margin-bottom: 20px;">This is to certify that the marriage between:</p>
+              
+              <div style="display: flex; justify-content: space-between; margin: 20px 0;">
+                <div style="width: 45%;">
+                  <p style="font-weight: bold; font-size: 16px;">Groom:</p>
+                  <p style="font-size: 18px; color: #166534; border-bottom: 1px solid #ccc; padding-bottom: 5px;">${certificateData.groomName}</p>
+                </div>
+                <div style="width: 45%;">
+                  <p style="font-weight: bold; font-size: 16px;">Bride:</p>
+                  <p style="font-size: 18px; color: #166534; border-bottom: 1px solid #ccc; padding-bottom: 5px;">${certificateData.brideName}</p>
+                </div>
+              </div>
+              
+              <div style="margin: 20px 0;">
+                <p style="font-weight: bold; font-size: 16px;">Was solemnized on:</p>
+                <p style="font-size: 16px; margin-bottom: 10px;">${certificateData.marriageDate}</p>
+                <p style="font-weight: bold; font-size: 16px;">At:</p>
+                <p style="font-size: 16px;">${certificateData.marriageLocation}</p>
+              </div>
+              
+              <div style="margin: 20px 0;">
+                <p style="font-weight: bold; font-size: 16px;">Witnesses:</p>
+                <p style="font-size: 16px;">1. ${certificateData.witness1}</p>
+                <p style="font-size: 16px;">2. ${certificateData.witness2}</p>
+              </div>
+            </div>
+            
+            <div style="margin-top: 30px; text-align: center;">
+              <p style="font-size: 14px; margin-bottom: 5px;">Issued by: ${certificateData.registrar}</p>
+              <p style="font-size: 12px; color: #666;">Digital Signature: ${certificateData.digitalSignature}</p>
+              <p style="font-size: 12px; color: #666;">Status: ${certificateData.status}</p>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 12px; color: #666;">This certificate is digitally signed and verified by the Shari'ah Court of Appeal, Jigawa State</p>
+          </div>
+        </div>
+      `;
+      
+      // Temporarily add to DOM for rendering
+      certificateElement.style.position = 'absolute';
+      certificateElement.style.left = '-9999px';
+      document.body.appendChild(certificateElement);
+      
+      // Generate canvas from the element
+      const canvas = await html2canvas(certificateElement, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      });
+      
+      // Remove temporary element
+      document.body.removeChild(certificateElement);
+      
+      // Create PDF
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      
+      let position = 0;
+      
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      
+      // Download the PDF
+      pdf.save(`Islamic_Marriage_Certificate_${certificateData.certificateId}.pdf`);
+      
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      // Fallback to original text download
+      const certificateContent = `
 ISLAMIC MARRIAGE CERTIFICATE
 Shari'ah Court of Appeal, Jigawa State
 
@@ -150,17 +254,18 @@ Witnesses:
 
 Issued by: ${certificateData.registrar}
 Digital Signature: ${certificateData.digitalSignature}
-  `
+      `;
 
-    const blob = new Blob([certificateContent], { type: "text/plain" })
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `Marriage_Certificate_${certificateData.certificateId}.txt`
-    document.body.appendChild(a)
-    a.click()
-    window.URL.revokeObjectURL(url)
-    document.body.removeChild(a)
+      const blob = new Blob([certificateContent], { type: "text/plain" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Marriage_Certificate_${certificateData.certificateId}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }
   }
 
   if (isSubmitted) {
@@ -180,6 +285,27 @@ Digital Signature: ${certificateData.digitalSignature}
             </div>
           </div>
         </header>
+
+        {/* Navigation Breadcrumbs */}
+        <div className="bg-gray-100 border-b">
+          <div className="container mx-auto px-4 py-3">
+            <nav className="flex items-center space-x-4 text-sm text-gray-600">
+              <Link href="/" className="hover:text-green-600 transition-colors">
+                Home
+              </Link>
+              <span>/</span>
+              <Link href="/services" className="hover:text-green-600 transition-colors">
+                Services
+              </Link>
+              <span>/</span>
+              <Link href="/services/marriage-certificate" className="hover:text-green-600 transition-colors">
+                Marriage Certificate
+              </Link>
+              <span>/</span>
+              <span className="text-green-600 font-medium">Application Status</span>
+            </nav>
+          </div>
+        </div>
 
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
@@ -441,6 +567,23 @@ Digital Signature: ${certificateData.digitalSignature}
           </div>
         </div>
       </header>
+
+      {/* Navigation Breadcrumbs */}
+      <div className="bg-gray-100 border-b">
+        <div className="container mx-auto px-4 py-3">
+          <nav className="flex items-center space-x-4 text-sm text-gray-600">
+            <Link href="/" className="hover:text-green-600 transition-colors">
+              Home
+            </Link>
+            <span>/</span>
+            <Link href="/services" className="hover:text-green-600 transition-colors">
+              Services
+            </Link>
+            <span>/</span>
+            <span className="text-green-600 font-medium">Marriage Certificate</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Progress Header */}
       <div className="bg-white border-b">

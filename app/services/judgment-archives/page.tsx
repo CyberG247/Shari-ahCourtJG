@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Scale, Search, Filter, Download, Eye, Calendar, FileText, ArrowLeft, BookOpen, Gavel } from "lucide-react"
 import Link from "next/link"
+import { generatePDFFromHTML } from '@/lib/pdf-utils'
 
 export default function JudgmentArchivesPage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -30,7 +31,7 @@ export default function JudgmentArchivesPage() {
       title: "Musa v. Fatima - Marriage Dissolution Appeal",
       category: "Family Law",
       date: "2024-01-15",
-      judge: "Hon. Kadi Abdullahi Musa",
+      judge: "Name of Kadi",
       summary:
         "Appeal against lower court decision on marriage dissolution. Court upheld the dissolution based on irreconcilable differences.",
       pages: 12,
@@ -41,7 +42,7 @@ export default function JudgmentArchivesPage() {
       title: "Estate of Late Alhaji Ibrahim - Inheritance Dispute",
       category: "Inheritance",
       date: "2024-01-10",
-      judge: "Hon. Kadi Aisha Garba",
+      judge: "Name of Kadi",
       summary:
         "Distribution of deceased's estate among heirs according to Islamic inheritance law. Court provided detailed calculation of shares.",
       pages: 18,
@@ -52,7 +53,7 @@ export default function JudgmentArchivesPage() {
       title: "Al-Baraka Trading Co. v. Sunshine Ltd - Commercial Dispute",
       category: "Commercial Law",
       date: "2023-12-20",
-      judge: "Hon. Kadi Muhammad Sani",
+      judge: "Name of Kadi",
       summary:
         "Contract dispute involving Islamic commercial principles. Court ruled in favor of appellant based on breach of contract.",
       pages: 15,
@@ -63,7 +64,7 @@ export default function JudgmentArchivesPage() {
       title: "Guardianship of Minor Children - Custody Appeal",
       category: "Family Law",
       date: "2023-12-18",
-      judge: "Hon. Kadi Fatima Ibrahim",
+      judge: "Name of Kadi",
       summary:
         "Appeal regarding custody of minor children following divorce. Court considered best interests of children under Islamic law.",
       pages: 10,
@@ -74,7 +75,7 @@ export default function JudgmentArchivesPage() {
       title: "Property Boundary Dispute - Civil Appeal",
       category: "Civil Appeals",
       date: "2023-12-15",
-      judge: "Hon. Kadi Usman Aliyu",
+      judge: "Name of Kadi",
       summary:
         "Land boundary dispute between neighboring properties. Court ordered new survey and established clear boundaries.",
       pages: 14,
@@ -297,9 +298,13 @@ export default function JudgmentArchivesPage() {
                           <Eye className="w-4 h-4 mr-2" />
                           View
                         </Button>
-                        <Button size="sm" variant="outline">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => downloadJudgment(judgment)}
+                        >
                           <Download className="w-4 h-4 mr-2" />
-                          Download
+                          Download PDF
                         </Button>
                       </div>
                     </div>
@@ -429,3 +434,58 @@ export default function JudgmentArchivesPage() {
     </div>
   )
 }
+
+  const downloadJudgment = async (judgment: any) => {
+    try {
+      const judgmentHTML = `
+        <div style="padding: 40px; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #166534; font-size: 24px; margin-bottom: 10px;">COURT JUDGMENT</h1>
+            <h2 style="color: #166534; font-size: 18px; margin-bottom: 5px;">Shari'ah Court of Appeal</h2>
+            <h3 style="color: #666; font-size: 14px;">Jigawa State, Nigeria</h3>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h2 style="color: #166534; font-size: 20px; margin-bottom: 10px;">${judgment.title}</h2>
+            <div style="margin-bottom: 10px;">
+              <strong>Case ID:</strong> ${judgment.id}
+            </div>
+            <div style="margin-bottom: 10px;">
+              <strong>Date:</strong> ${new Date(judgment.date).toLocaleDateString()}
+            </div>
+            <div style="margin-bottom: 10px;">
+              <strong>Judge:</strong> ${judgment.judge}
+            </div>
+            <div style="margin-bottom: 10px;">
+              <strong>Category:</strong> ${judgment.category}
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="color: #166534; font-size: 16px; margin-bottom: 10px;">Summary</h3>
+            <p style="line-height: 1.6; text-align: justify;">${judgment.summary}</p>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="color: #166534; font-size: 16px; margin-bottom: 10px;">Judgment Details</h3>
+            <p style="line-height: 1.6; text-align: justify;">
+              [Full judgment content would be loaded here from the database]
+            </p>
+          </div>
+          
+          <div style="margin-top: 30px; text-align: center; border-top: 1px solid #ccc; padding-top: 20px;">
+            <p style="font-size: 12px; color: #666;">Pages: ${judgment.pages} | Citations: ${judgment.citations}</p>
+            <p style="font-size: 12px; color: #666;">Downloaded from Shari'ah Court of Appeal Digital Archives</p>
+          </div>
+        </div>
+      `
+      
+      await generatePDFFromHTML(judgmentHTML, {
+        filename: `Judgment_${judgment.id}_${judgment.title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`,
+        scale: 2
+      })
+    } catch (error) {
+      console.error('Error downloading judgment:', error)
+      alert('Error downloading judgment. Please try again.')
+    }
+  }

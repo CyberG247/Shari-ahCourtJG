@@ -1,11 +1,20 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Scale, FileText, Search, Clock, Shield, Users, Heart, ArrowRight, CheckCircle } from "lucide-react"
+import { Scale, FileText, Search, Clock, Shield, Users, Heart, ArrowRight, CheckCircle, Upload } from "lucide-react"
 import Link from "next/link"
 
 export default function ServicesPage() {
   const eServices = [
+    {
+      title: "E-Filing System",
+      description: "File new cases electronically with our comprehensive online case submission system",
+      icon: Upload,
+      features: ["Online case filing", "Document upload", "Payment integration", "Case tracking"],
+      status: "Available",
+      href: "/services/e-filing",
+      color: "green",
+    },
     {
       title: "Islamic Marriage Certificate",
       description: "Apply for and download official Islamic marriage certificates with digital verification",
@@ -13,7 +22,7 @@ export default function ServicesPage() {
       features: ["Online application", "Digital verification", "Instant download", "Legal validity"],
       status: "Available",
       href: "/services/marriage-certificate",
-      color: "red",
+      color: "green",
     },
     {
       title: "Judgment Archives",
@@ -31,7 +40,7 @@ export default function ServicesPage() {
       features: ["Real-time updates", "SMS notifications", "Document uploads", "Hearing schedules"],
       status: "Available",
       href: "/services/case-tracking",
-      color: "blue",
+      color: "green",
     },
     {
       title: "Document Verification",
@@ -40,48 +49,65 @@ export default function ServicesPage() {
       features: ["QR code scanning", "Digital signatures", "Blockchain security", "Instant verification"],
       status: "Available",
       href: "/services/document-verification",
-      color: "purple",
+      color: "green",
     },
   ]
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-green-800 text-white shadow-lg">
+      <header className="bg-white text-black shadow-lg border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <Scale className="w-8 h-8 text-green-800" />
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border">
+                <img 
+                  src="/nigeria-logo.png" 
+                  alt="Nigerian Coat of Arms" 
+                  className="w-12 h-12 object-contain"
+                />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Shari'ah Court of Appeal</h1>
-                <p className="text-green-100">Jigawa State, Nigeria</p>
+                <h1 className="text-xl font-bold text-black">Shari'ah Court of Appeal</h1>
+                <p className="text-gray-600">Jigawa State, Nigeria</p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-6">
-              <Link href="/" className="hover:text-green-200 transition-colors">
+              <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Home
               </Link>
-              <Link href="/about" className="hover:text-green-200 transition-colors">
+              <Link href="/about" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 About Us
               </Link>
-              <Link href="/management" className="hover:text-green-200 transition-colors">
+              <Link href="/management" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Management
               </Link>
-              <Link href="/courts" className="hover:text-green-200 transition-colors">
+              <Link href="/courts" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Courts
               </Link>
-              <Link href="/services" className="text-green-200 font-semibold">
-                E-Services
-              </Link>
-              <Link href="/media" className="hover:text-green-200 transition-colors">
+              <Link href="/media" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
                 Media
+              </Link>
+              <Link href="/services" className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:shadow-lg transition-all duration-300 font-semibold">
+                E-Services
               </Link>
             </nav>
           </div>
         </div>
       </header>
+
+      {/* Navigation Breadcrumbs */}
+      <div className="bg-gray-50 border-b">
+        <div className="container mx-auto px-4 py-3">
+          <nav className="flex items-center space-x-4 text-sm text-gray-600">
+            <Link href="/" className="hover:text-green-600 transition-colors">
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-green-600 font-medium">E-Services</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-16">
@@ -124,26 +150,10 @@ export default function ServicesPage() {
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center">
                       <div
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center mr-4 ${
-                          service.color === "red"
-                            ? "bg-red-100"
-                            : service.color === "green"
-                              ? "bg-green-100"
-                              : service.color === "blue"
-                                ? "bg-blue-100"
-                                : "bg-purple-100"
-                        }`}
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mr-4 bg-green-100"
                       >
                         <service.icon
-                          className={`w-7 h-7 ${
-                            service.color === "red"
-                              ? "text-red-600"
-                              : service.color === "green"
-                                ? "text-green-600"
-                                : service.color === "blue"
-                                  ? "text-blue-600"
-                                  : "text-purple-600"
-                          }`}
+                          className="w-7 h-7 text-green-600"
                         />
                       </div>
                       <div>
@@ -170,15 +180,7 @@ export default function ServicesPage() {
 
                   <Link href={service.href}>
                     <Button
-                      className={`w-full group-hover:shadow-lg transition-all duration-300 ${
-                        service.color === "red"
-                          ? "bg-red-600 hover:bg-red-700"
-                          : service.color === "green"
-                            ? "bg-green-600 hover:bg-green-700"
-                            : service.color === "blue"
-                              ? "bg-blue-600 hover:bg-blue-700"
-                              : "bg-purple-600 hover:bg-purple-700"
-                      }`}
+                      className="w-full group-hover:shadow-lg transition-all duration-300 bg-green-600 hover:bg-green-700"
                     >
                       Access Service
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
