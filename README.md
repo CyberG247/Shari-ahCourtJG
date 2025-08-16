@@ -1,4 +1,4 @@
-# Shari'ah court website
+# court website
 
 *Automatically synced with your [v0.dev](https://v0.dev) deployments*
 
