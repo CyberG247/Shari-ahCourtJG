@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Scale, Clock, Search, Bell, Calendar, FileText, ArrowLeft, AlertCircle, Phone, Mail } from "lucide-react"
 import Link from "next/link"
+import { generatePDFFromHTML } from '@/lib/pdf-utils'
 
 export default function CaseTrackingPage() {
   const [trackingId, setTrackingId] = useState("")
@@ -117,20 +118,20 @@ export default function CaseTrackingPage() {
       {/* Header */}
       <header className="bg-green-800 text-white shadow-lg">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <Scale className="w-8 h-8 text-green-800" />
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <Scale className="w-6 h-6 sm:w-8 sm:h-8 text-green-800" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Shari'ah Court of Appeal</h1>
-                <p className="text-green-100">Case Status Tracking System</p>
+                <h1 className="text-lg sm:text-xl font-bold">Shari'ah Court of Appeal</h1>
+                <p className="text-xs sm:text-sm text-green-100">Case Status Tracking System</p>
               </div>
             </div>
-            <Link href="/services">
+            <Link href="/services" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-green-800 bg-transparent"
+                className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-green-800 bg-transparent text-xs sm:text-sm"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Services
@@ -141,24 +142,24 @@ export default function CaseTrackingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">
+      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-10 sm:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4">Case Status Tracking</h2>
-            <p className="text-xl text-green-100 mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Case Status Tracking</h2>
+            <p className="text-sm sm:text-lg md:text-xl text-green-100 mb-6 sm:mb-8">
               Track your applications and cases in real-time with our comprehensive tracking system
             </p>
-            <div className="flex items-center justify-center space-x-8 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm">
               <div className="flex items-center">
-                <Clock className="w-5 h-5 mr-2" />
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>Real-time Updates</span>
               </div>
               <div className="flex items-center">
-                <Bell className="w-5 h-5 mr-2" />
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>SMS Notifications</span>
               </div>
               <div className="flex items-center">
-                <FileText className="w-5 h-5 mr-2" />
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>Document Status</span>
               </div>
             </div>
@@ -314,7 +315,7 @@ export default function CaseTrackingPage() {
                           }`}
                         ></div>
                         <div className="flex-1">
-                          <div className="flex items-center justify-between">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                             <h4
                               className={`font-semibold ${
                                 item.status === "current" ? "text-blue-600" : "text-gray-900"
@@ -322,7 +323,7 @@ export default function CaseTrackingPage() {
                             >
                               {item.stage}
                             </h4>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-xs sm:text-sm text-gray-500">
                               {item.date} {item.time !== "Pending" && `• ${item.time}`}
                             </div>
                           </div>
@@ -350,7 +351,7 @@ export default function CaseTrackingPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {caseData?.documents?.map((doc: any, index: number) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-gray-50 rounded-lg gap-2">
                           <div>
                             <p className="font-medium">{doc.name}</p>
                             <p className="text-sm text-gray-500">Submitted: {doc.date}</p>

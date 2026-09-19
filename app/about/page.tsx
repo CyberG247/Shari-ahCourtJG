@@ -11,75 +11,40 @@ export default function AboutPage() {
   ]
 
   const currentKadis = [
-    { name: "Name of Kadi", specialization: "Senior Kadi & Administrative Head", experience: "15 years" },
-    { name: "Name of Kadi", specialization: "Family Law & Personal Status", experience: "12 years" },
-    { name: "Name of Kadi", specialization: "Civil Appeals & Commercial Law", experience: "10 years" },
-    { name: "Name of Kadi", specialization: "Inheritance & Property Disputes", experience: "8 years" },
-    { name: "Name of Kadi", specialization: "Criminal Appeals & Public Law", experience: "7 years" },
+    { id: "kadi-umar-nasir", name: "Hon. Kadi Umar Nasir Ahmad", appointmentPeriod: "Hon. Kadi (2017 – Date)", specialization: "Senior Appellate Kadi (02)", division: "Appellate Division 1 (Dutse)" },
+    { id: "kadi-safiyanu", name: "Hon. Kadi Safiyanu", appointmentPeriod: "Hon. Kadi (2018 – Date)", specialization: "Appellate Division Judge (03)", division: "Appellate Division 2 (Hadejia)" },
+    { id: "kadi-bala-musa", name: "Hon. Kadi Dr. Bala Musa Ph.D", appointmentPeriod: "Hon. Kadi (2018 – Date)", specialization: "Former Chief Registrar & Academic Jurist (04)", division: "Appellate Division 1 (Dutse)", image: "/kadis/hon-kadi-bala-musa.jpg" },
+    { id: "kadi-ibrahim-yau", name: "Hon. Kadi Ibrahim Ya'u", appointmentPeriod: "Hon. Kadi (2019 – Date)", specialization: "Appellate Division Judge (05)", division: "Appellate Division 3 (Kazaure)" },
+    { id: "kadi-barau-musa", name: "Hon. Kadi Bara’u Bashir Musa", appointmentPeriod: "Hon. Kadi (2021 – Date)", specialization: "Maliki Jurisprudence Specialist", division: "Appellate Division 2 (Hadejia)" },
+    { id: "kadi-ahmad-lamin", name: "Hon. Kadi Ahmad Muhammadu Lamin", appointmentPeriod: "Hon. Kadi (2021 – Date)", specialization: "Appellate Division Judge", division: "Appellate Division 4 (Gumel)" },
+    { id: "kadi-nasiru-zargina", name: "Hon. Kadi Nasiru Abubakar Zargina", appointmentPeriod: "Hon. Kadi (2021 – Date)", specialization: "Appellate Division Judge", division: "Appellate Division 5 (Ringim)" },
+    { id: "kadi-mukhtar-adam", name: "Hon. Kadi Mukhtar Shuaibu Adam", appointmentPeriod: "Hon. Kadi (2024 – Date)", specialization: "Islamic Estate Specialist", division: "Appellate Division 1 (Dutse)" },
   ]
 
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white text-black shadow-lg border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center border">
+    <div className="min-h-screen bg-court-sand-50/40">
+      {/* Page Header */}
+      <section className="bg-gradient-to-r from-court-green-950 via-court-green-900 to-court-green-950 text-white py-12 border-b-4 border-court-gold-500 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none islamic-pattern-dark"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="flex justify-center mb-4">
+              <div className="w-20 h-20 rounded-full bg-white p-2 border-2 border-court-gold-400 shadow-judicial-gold flex items-center justify-center">
                 <img 
-                  src="/nigeria-logo.png" 
-                  alt="Nigerian Coat of Arms" 
-                  className="w-12 h-12 object-contain"
+                  src="/Court-logo.png" 
+                  alt="Official Seal of the Shari'ah Court of Appeal, Jigawa State" 
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-black">Shari'ah Court of Appeal</h1>
-                <p className="text-gray-600">Jigawa State, Nigeria</p>
-              </div>
             </div>
-            <nav className="hidden md:flex space-x-6">
-              <Link href="/" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
-                Home
-              </Link>
-              <Link href="/about" className="px-3 py-2 bg-green-100 text-green-600 rounded-lg font-semibold">
-                About Us
-              </Link>
-              <Link href="/management" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
-                Management
-              </Link>
-              <Link href="/courts" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
-                Courts
-              </Link>
-              <Link href="/media" className="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-green-600 transition-all duration-300 text-black font-medium">
-                Media
-              </Link>
-              <Link href="/services" className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:shadow-lg transition-all duration-300 font-semibold">
-                E-Services
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Navigation Breadcrumbs */}
-      <div className="bg-gray-50 border-b">
-        <div className="container mx-auto px-4 py-3">
-          <nav className="flex items-center space-x-4 text-sm text-gray-600">
-            <Link href="/" className="hover:text-green-600 transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-green-600 font-medium">About Us</span>
-          </nav>
-        </div>
-      </div>
-
-      {/* Page Header */}
-      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4">About Us</h2>
-            <p className="text-xl text-green-100">Learn about our history, mission, and the people who serve justice</p>
+            <Badge className="bg-court-gold-500 text-court-green-950 font-bold text-xs mb-3">
+              Institutional Overview
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3">About The Court</h1>
+            <p className="text-sm sm:text-base text-court-sand-200">
+              Constitutional authority, appellate jurisdiction, and the history of judicial stewardship in Jigawa State
+            </p>
           </div>
         </div>
       </section>
@@ -217,29 +182,63 @@ export default function AboutPage() {
             <p className="text-xl text-gray-600">Our distinguished panel of Islamic law experts</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {currentKadis.map((kadi, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+              <Card key={index} className="group border border-gray-200/90 hover:border-court-green-700/60 rounded-2xl p-4 bg-white shadow-sm hover:shadow-judicial transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-[#eef0f2] border border-gray-200/80 mb-3.5 flex items-center justify-center group-hover:border-court-gold-400 transition-colors">
+                    {kadi.image ? (
                       <Image
-                        src={`/placeholder.svg?height=80&width=80&query=professional portrait of Nigerian Islamic Kadi ${index + 1}`}
+                        src={kadi.image}
                         alt={kadi.name}
-                        width={80}
-                        height={80}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{kadi.name}</h4>
-                      <p className="text-green-600 font-medium mb-2">{kadi.specialization}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-600">
-                        <span>Experience: {kadi.experience}</span>
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-[#e9ecef] relative p-6 select-none">
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
+                          <div className="w-32 h-32 rounded-full border border-gray-300"></div>
+                          <div className="absolute w-20 h-20 rounded-full border border-gray-300"></div>
+                          <div className="absolute w-44 h-44 rounded-full border border-gray-200"></div>
+                        </div>
+                        <div className="relative z-10 w-14 h-14 rounded-full bg-white/80 border border-gray-300/80 flex items-center justify-center shadow-sm">
+                          <svg className="w-7 h-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                          </svg>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
-                </CardContent>
+
+                  <Link href={`/kadis/${kadi.id}`}>
+                    <h4 className="font-bold text-center text-court-green-900 text-base sm:text-lg leading-snug tracking-tight group-hover:text-court-green-700 transition-colors">
+                      {kadi.name}
+                    </h4>
+                  </Link>
+                  <p className="text-xs sm:text-sm text-gray-500 text-center font-medium mt-1">
+                    {kadi.appointmentPeriod}
+                  </p>
+                  <div className="flex justify-center mt-2">
+                    <span className="text-[11px] text-gray-500 font-medium px-2.5 py-0.5 rounded-full bg-court-sand-100 border border-gray-200">
+                      {kadi.division}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Profile Button with required '-->' arrow */}
+                <div className="mt-4 pt-3 border-t border-gray-100">
+                  <Link
+                    href={`/kadis/${kadi.id}`}
+                    className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-court-green-900 hover:bg-court-green-800 text-white text-xs font-semibold shadow-sm transition-all duration-200 group/btn border border-court-gold-400/30 hover:border-court-gold-400"
+                    title={`View official profile of ${kadi.name}`}
+                  >
+                    <span>View Profile &amp; Biography</span>
+                    <span className="font-mono text-court-gold-300 group-hover/btn:text-white font-extrabold text-sm group-hover/btn:translate-x-1 transition-transform tracking-wider">
+                      --&gt;
+                    </span>
+                  </Link>
+                </div>
               </Card>
             ))}
           </div>
@@ -318,87 +317,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                  <Scale className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold">Shari'ah Court</h4>
-                  <p className="text-sm text-gray-400">Jigawa State</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm">
-                Upholding justice in accordance with Shari'ah principles since establishment.
-              </p>
-            </div>
-
-            <div>
-              <h5 className="font-semibold mb-4">Quick Links</h5>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-white">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/management" className="text-gray-400 hover:text-white">
-                    Management
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/courts" className="text-gray-400 hover:text-white">
-                    Courts
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h5 className="font-semibold mb-4">Services</h5>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <span className="text-gray-400">Family Law</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Civil Appeals</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Marriage Certificates</span>
-                </li>
-                <li>
-                  <span className="text-gray-400">Legal Documentation</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h5 className="font-semibold mb-4">Contact</h5>
-              <div className="text-sm text-gray-400 space-y-1">
-                <p>Dutse, Jigawa State</p>
-                <p>+234 (0) 64 721 234</p>
-                <p>info@shariahcourt.jigawa.gov.ng</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Shari'ah Court of Appeal, Jigawa State. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

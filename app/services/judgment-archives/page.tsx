@@ -100,20 +100,20 @@ export default function JudgmentArchivesPage() {
       {/* Header */}
       <header className="bg-green-800 text-white shadow-lg">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <Scale className="w-8 h-8 text-green-800" />
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                <Scale className="w-6 h-6 sm:w-8 sm:h-8 text-green-800" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Shari'ah Court of Appeal</h1>
-                <p className="text-green-100">Judgment Archives & Legal Database</p>
+                <h1 className="text-lg sm:text-xl font-bold">Shari'ah Court of Appeal</h1>
+                <p className="text-xs sm:text-sm text-green-100">Judgment Archives & Legal Database</p>
               </div>
             </div>
-            <Link href="/services">
+            <Link href="/services" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-green-800 bg-transparent"
+                className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-green-800 bg-transparent text-xs sm:text-sm"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Services
@@ -124,24 +124,24 @@ export default function JudgmentArchivesPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">
+      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-10 sm:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4">Judgment Archives</h2>
-            <p className="text-xl text-green-100 mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Judgment Archives</h2>
+            <p className="text-sm sm:text-lg md:text-xl text-green-100 mb-6 sm:mb-8">
               Search and access our comprehensive database of court judgments and legal precedents
             </p>
-            <div className="flex items-center justify-center space-x-8 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm">
               <div className="flex items-center">
-                <BookOpen className="w-5 h-5 mr-2" />
+                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>3,770+ Judgments</span>
               </div>
               <div className="flex items-center">
-                <Calendar className="w-5 h-5 mr-2" />
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>1992 - Present</span>
               </div>
               <div className="flex items-center">
-                <Gavel className="w-5 h-5 mr-2" />
+                <Gavel className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>6 Categories</span>
               </div>
             </div>
@@ -239,9 +239,9 @@ export default function JudgmentArchivesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {judgmentCategories.map((category, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-semibold text-gray-900">{category.name}</h4>
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-900">{category.name}</h4>
                     <Badge className={category.color}>{category.count}</Badge>
                   </div>
                   <Button variant="outline" size="sm" className="w-full bg-transparent">
@@ -267,13 +267,13 @@ export default function JudgmentArchivesPage() {
             <div className="space-y-6">
               {recentJudgments.map((judgment, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                       <div className="flex-1">
-                        <div className="flex items-start justify-between mb-3">
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
                           <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-1">{judgment.title}</h4>
-                            <div className="flex items-center space-x-4 text-sm text-gray-600">
+                            <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">{judgment.title}</h4>
+                            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-600">
                               <span className="font-medium">{judgment.id}</span>
                               <span>•</span>
                               <span>{new Date(judgment.date).toLocaleDateString()}</span>
@@ -281,20 +281,20 @@ export default function JudgmentArchivesPage() {
                               <span>{judgment.judge}</span>
                             </div>
                           </div>
-                          <Badge className={getCategoryColor(judgment.category)}>{judgment.category}</Badge>
+                          <Badge className={`${getCategoryColor(judgment.category)} self-start`}>{judgment.category}</Badge>
                         </div>
 
-                        <p className="text-gray-700 mb-4 leading-relaxed">{judgment.summary}</p>
+                        <p className="text-gray-700 mb-4 leading-relaxed text-xs sm:text-sm">{judgment.summary}</p>
 
-                        <div className="flex items-center space-x-6 text-sm text-gray-500">
+                        <div className="flex items-center space-x-6 text-xs sm:text-sm text-gray-500">
                           <span>{judgment.pages} pages</span>
                           <span>•</span>
                           <span>{judgment.citations} citations</span>
                         </div>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row lg:flex-col gap-2 lg:w-32">
-                        <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                      <div className="flex flex-col sm:flex-row lg:flex-col gap-2 w-full sm:w-auto lg:w-36">
+                        <Button size="sm" className="bg-green-600 hover:bg-green-700 w-full sm:w-auto lg:w-full">
                           <Eye className="w-4 h-4 mr-2" />
                           View
                         </Button>
@@ -302,6 +302,7 @@ export default function JudgmentArchivesPage() {
                           size="sm" 
                           variant="outline"
                           onClick={() => downloadJudgment(judgment)}
+                          className="w-full sm:w-auto lg:w-full"
                         >
                           <Download className="w-4 h-4 mr-2" />
                           Download PDF

@@ -21,6 +21,7 @@ import {
   Eye,
 } from "lucide-react"
 import Link from "next/link"
+import { generatePDFFromHTML } from '@/lib/pdf-utils'
 
 export default function DocumentVerificationPage() {
   const [verificationMethod, setVerificationMethod] = useState("qr")
@@ -76,20 +77,20 @@ export default function DocumentVerificationPage() {
       {/* Header */}
       <header className="bg-green-800 text-white shadow-lg">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <Scale className="w-8 h-8 text-green-800" />
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full p-1 border-2 border-court-gold-400 flex items-center justify-center flex-shrink-0 shadow-sm">
+                <img src="/Court-logo.png" alt="Official Court Seal" className="w-full h-full object-contain" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Shari'ah Court of Appeal</h1>
-                <p className="text-green-100">Document Verification System</p>
+                <h1 className="text-lg sm:text-xl font-bold">Shari'ah Court of Appeal</h1>
+                <p className="text-xs sm:text-sm text-green-100">Official Judicial Document Verification System</p>
               </div>
             </div>
-            <Link href="/services">
+            <Link href="/services" className="w-full sm:w-auto">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-green-800 bg-transparent"
+                className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-green-800 bg-transparent text-xs sm:text-sm"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Services
@@ -100,24 +101,24 @@ export default function DocumentVerificationPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-12">
+      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-10 sm:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4">Document Verification</h2>
-            <p className="text-xl text-green-100 mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Document Verification</h2>
+            <p className="text-sm sm:text-lg md:text-xl text-green-100 mb-6 sm:mb-8">
               Instantly verify the authenticity of court-issued documents using our secure verification system
             </p>
-            <div className="flex items-center justify-center space-x-8 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm">
               <div className="flex items-center">
-                <Shield className="w-5 h-5 mr-2" />
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>Blockchain Secured</span>
               </div>
               <div className="flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2" />
+                <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>Instant Verification</span>
               </div>
               <div className="flex items-center">
-                <FileText className="w-5 h-5 mr-2" />
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span>Digital Signatures</span>
               </div>
             </div>
@@ -190,17 +191,17 @@ export default function DocumentVerificationPage() {
                 {verificationMethod === "qr" && (
                   <div className="space-y-6">
                     <div className="text-center">
-                      <div className="w-64 h-64 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <div className="w-full max-w-[256px] h-56 sm:h-64 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                         <div className="text-center">
-                          <Camera className="w-16 h-16 text-gray-400 mx-auto mb-2" />
-                          <p className="text-gray-500">Camera will activate here</p>
+                          <Camera className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-2" />
+                          <p className="text-gray-500 text-xs sm:text-sm">Camera will activate here</p>
                         </div>
                       </div>
-                      <p className="text-gray-600">Position the QR code within the camera frame</p>
+                      <p className="text-gray-600 text-xs sm:text-sm">Position the QR code within the camera frame</p>
                     </div>
 
                     <div className="text-center">
-                      <Button className="bg-purple-600 hover:bg-purple-700">
+                      <Button className="bg-purple-600 hover:bg-purple-700 w-full sm:w-auto">
                         <Camera className="w-4 h-4 mr-2" />
                         Start Camera
                       </Button>
@@ -208,7 +209,7 @@ export default function DocumentVerificationPage() {
 
                     <Alert>
                       <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>
+                      <AlertDescription className="text-xs sm:text-sm">
                         Make sure your camera has permission to access this website and the QR code is clearly visible.
                       </AlertDescription>
                     </Alert>
@@ -226,32 +227,34 @@ export default function DocumentVerificationPage() {
                         value={documentId}
                         onChange={(e) => setDocumentId(e.target.value)}
                       />
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-xs sm:text-sm text-gray-500 mt-1">
                         Find the document ID on the top right corner of your certificate
                       </p>
                     </div>
 
-                    <Button
-                      onClick={handleVerification}
-                      disabled={isVerifying || !documentId}
-                      className="bg-blue-600 hover:bg-blue-700"
-                    >
-                      {isVerifying ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Verifying...
-                        </>
-                      ) : (
-                        <>
-                          <Shield className="w-4 h-4 mr-2" />
-                          Verify Document
-                        </>
-                      )}
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Button
+                        onClick={handleVerification}
+                        disabled={isVerifying || !documentId}
+                        className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                      >
+                        {isVerifying ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                            Verifying...
+                          </>
+                        ) : (
+                          <>
+                            <Shield className="w-4 h-4 mr-2" />
+                            Verify Document
+                          </>
+                        )}
+                      </Button>
 
-                    <Button variant="outline" onClick={() => setDocumentId("MC-2024-0001")}>
-                      Try Demo ID
-                    </Button>
+                      <Button variant="outline" onClick={() => setDocumentId("MC-2024-0001")} className="w-full sm:w-auto">
+                        Try Demo ID
+                      </Button>
+                    </div>
                   </div>
                 )}
 
@@ -387,12 +390,12 @@ export default function DocumentVerificationPage() {
                         <div>
                           <span className="font-medium">Digital Signature:</span>
                           <br />
-                          <code className="bg-white px-1 rounded">{verificationResult?.digitalSignature}</code>
+                          <code className="bg-white px-1 rounded break-all">{verificationResult?.digitalSignature}</code>
                         </div>
                         <div>
                           <span className="font-medium">Blockchain Hash:</span>
                           <br />
-                          <code className="bg-white px-1 rounded">{verificationResult?.blockchainHash}</code>
+                          <code className="bg-white px-1 rounded break-all">{verificationResult?.blockchainHash}</code>
                         </div>
                       </div>
                     </div>
