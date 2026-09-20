@@ -425,17 +425,31 @@ export default function PastKadisPage() {
               </p>
             </div>
 
-            {/* 2012 */}
+            {/* 2010 – 2015 */}
             <div className="relative">
               <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-court-green-800 border-2 border-white shadow"></div>
               <span className="inline-block px-2 py-0.5 rounded bg-court-green-100 text-court-green-900 text-xs font-bold mb-1">
-                2012 – 2015
+                2010 – 2015
               </span>
               <h4 className="font-bold text-court-slate-900 text-sm sm:text-base">
-                Judicial Complex Development &amp; Rural Registry Expansion
+                Consolidation Under Late Grand Kadi Muhammadu Inuwa Ali
               </h4>
               <p className="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
-                Modernization of court premises in Dutse, construction of official residences for the Grand Kadi and Kadis, and expansion of judicial divisional registries to Hadejia, Gumel, Kazaure, Ringim, and Birnin Kudu.
+                Period of robust appellate jurisprudence, modernization of court premises in Dutse, development of official residences, and expansion of judicial divisional registries to Hadejia, Gumel, Kazaure, Ringim, and Birnin Kudu.
+              </p>
+            </div>
+
+            {/* 2015 – 2020 */}
+            <div className="relative">
+              <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-court-gold-500 border-2 border-white shadow"></div>
+              <span className="inline-block px-2 py-0.5 rounded bg-court-gold-100 text-court-gold-900 text-xs font-bold mb-1">
+                2015 – 2020
+              </span>
+              <h4 className="font-bold text-court-slate-900 text-sm sm:text-base">
+                Institutional Transformation Under Late Grand Kadi Isah Jibrin Gantsa
+              </h4>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 leading-relaxed">
+                Transformative tenure marked by judicial staff welfare initiatives, appellate docket modernization, elevated access to justice in rural jurisdictions, and community cohesion across the state.
               </p>
             </div>
 
@@ -466,7 +480,7 @@ export default function PastKadisPage() {
               Tribute to Our Departed Judicial Forefathers
             </h3>
             <p className="text-xs sm:text-sm text-court-sand-200 mt-2 max-w-2xl mx-auto leading-relaxed">
-              "We pray that Almighty Allah (SWT) in His infinite mercy grants al-Jannatul Firdaus to the late Hon. Grand Kadi Isah Jibrin Gantsa, the late Hon. Kadi Bashir Birnin-Kudu, and all deceased judicial officers who served the course of justice and uprightness in Jigawa State. Their scholarly rulings and dedication remain an enduring legacy for generations."
+              "We pray that Almighty Allah (SWT) in His infinite mercy grants al-Jannatul Firdaus to the late Hon. Grand Kadi Muhammadu Inuwa Ali, the late Hon. Grand Kadi Isah Jibrin Gantsa, the late Hon. Kadi Bashir Birnin-Kudu, and all deceased judicial officers who served the course of justice and uprightness in Jigawa State. Their scholarly rulings and dedication remain an enduring legacy for generations."
             </p>
             <div className="mt-4 font-arabic text-base sm:text-lg text-court-gold-300">
               إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ • رَحِمَهُمُ ٱللَّٰهُ رَحْمَةً وَاسِعَةً

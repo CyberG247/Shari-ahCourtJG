@@ -58,7 +58,7 @@ export const pastKadisList: PastKadiProfile[] = [
     roleCategory: 'grand-kadi',
     rankTitle: 'Former Grand Kadi of Jigawa State',
     tenurePeriod: '2000s Era (Expansion of Shari’ah Framework)',
-    tenureYears: '2002 – 2012',
+    tenureYears: '2002 – 2010',
     status: 'retired',
     traditionalOrHonoraryTitles: 'Former Member, Jigawa State Judicial Service Commission (JSC)',
     division: 'Dutse Headquarters',
@@ -78,6 +78,37 @@ export const pastKadisList: PastKadiProfile[] = [
       'Islamic Succession & Complex Estate Distribution'
     ],
     historicalNotes: 'Esteemed jurist and judicial statesman whose stewardship strengthened the credibility and public trust in the state’s Shari’ah appellate system.'
+  },
+  {
+    id: 'grand-kadi-inuwa-ali',
+    name: 'Late Hon. Grand Kadi Muhammadu Inuwa Ali',
+    fullName: 'Muhammadu Inuwa Ali',
+    honorific: 'His Lordship, Hon. Grand Kadi (Late)',
+    roleCategory: 'grand-kadi',
+    rankTitle: 'Former Grand Kadi of Jigawa State',
+    tenurePeriod: 'Former Head of Court (2010 – 2015)',
+    tenureYears: '2010 – 2015',
+    status: 'deceased',
+    passingYear: '2020',
+    burialOrMemorialLocation: 'Interred in Jigawa State',
+    traditionalOrHonoraryTitles: 'Eminent Islamic Jurist & Former Head of Court',
+    division: 'Dutse Headquarters',
+    biography: [
+      'The late Honourable Grand Kadi Muhammadu Inuwa Ali was an eminent Islamic jurist who served with distinction as the Grand Kadi (Head of Court) of the Jigawa State Shari’ah Court of Appeal from 2010 to 2015.',
+      'His Lordship steered the state appellate bench through a transformative period of institutional consolidation, advancing judicial ethics across trial and appellate divisions, strengthening supervisory oversight of Upper Shari’a courts, and upholding rigorous standards of classical Maliki jurisprudence.',
+      'Throughout his distinguished judicial career and lifetime of public service, he commanded profound respect across the judiciary and the wider community for his piety, deep scholarly insight, and unyielding dedication to justice. He returned to Allah in 2020, leaving an enduring legacy of integrity. Rahimahullah.'
+    ],
+    keyContributions: [
+      'Presided as Grand Kadi and Head of Court of the Jigawa State Shari’ah Court of Appeal (2010 – 2015).',
+      'Instituted rigorous inspection and supervisory standards for Lower and Upper Shari’a courts across the state’s 27 LGAs.',
+      'Authored authoritative appellate rulings in Islamic estate distribution (Mirath), matrimonial restitution, and land endowments (Waqf).'
+    ],
+    jurisprudentialSpecialization: [
+      'Classical Maliki Jurisprudence (Fiqh al-Mu’amalat)',
+      'Estate Administration & Succession (Mirath)',
+      'Appellate Judicial Administration & Ethics'
+    ],
+    historicalNotes: 'Revered former Head of Court whose judicial stewardship from 2010 to 2015 cemented institutional discipline and fidelity to Islamic legal standards. Rahimahullah.'
   },
   {
     id: 'grand-kadi-isah-gantsa',
@@ -144,35 +175,6 @@ export const pastKadisList: PastKadiProfile[] = [
       'Judicial Ethics & Moral Integrity'
     ],
     historicalNotes: 'Revered spiritual and intellectual father of the Jigawa Islamic judiciary whose lifetime of scholarship educated generations of judges. Rahimahullah.'
-  },
-  {
-    id: 'kadi-ibrahim-yau',
-    name: 'Hon. Kadi Ibrahim Alhaji Ya’u',
-    fullName: 'Ibrahim Alhaji Ya’u',
-    honorific: 'The Honorable Kadi',
-    roleCategory: 'kadi',
-    rankTitle: 'Past Honorable Kadi of the Shari’ah Court of Appeal',
-    tenurePeriod: 'Appointed 2019 (Appellate Division)',
-    tenureYears: '2019 – 2024',
-    status: 'retired',
-    traditionalOrHonoraryTitles: 'Senior Appellate Jurist',
-    division: 'Hadejia / Dutse Appellate Divisions',
-    biography: [
-      'Hon. Kadi Ibrahim Alhaji Ya’u was recommended by the National Judicial Council (NJC) in October 2019 and appointed by the Jigawa State Government as an Appellate Kadi of the Shari’ah Court of Appeal.',
-      'Bringing over two decades of trial experience from the Upper Shari’a courts, His Lordship served on numerous appellate panels adjudicating intricate land disputes, agricultural boundary arbitrations, and inheritance distributions across the Hadejia and Gumel emirate divisions.',
-      'His tenure was characterized by rigorous adherence to procedural deadlines, meticulous examination of trial transcripts, and active participation in judicial continuing education.'
-    ],
-    keyContributions: [
-      'Presided over complex appellate panels in the eastern judicial divisions of Jigawa State.',
-      'Contributed significantly to expedited hearing guidelines for rural probate and estate appeals.',
-      'Served as judicial mentor to newly appointed Alkalis and registry personnel.'
-    ],
-    jurisprudentialSpecialization: [
-      'Agricultural Land Tenure & Customary Islamic Easements (Irtifaq)',
-      'Estate Settlement (Qismah al-Tirkat)',
-      'Appellate Cause List Management'
-    ],
-    historicalNotes: 'Dedicated appellate jurist whose seasoned insight fortified appellate dispute resolution in the Hadejia and Dutse divisions.'
   },
   {
     id: 'kadi-sani-isah',
