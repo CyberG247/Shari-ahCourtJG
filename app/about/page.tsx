@@ -1,14 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Scale, Target, Eye, Heart, BookOpen, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Scale, Target, Eye, Heart, BookOpen, Users, User, History, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { pastKadisList } from "@/lib/past-kadis-data"
 
 export default function AboutPage() {
-  const formerGrandKadis = [
-    { name: "Name of Kadi", tenure: "2010-2015", image: "former-kadi-1" },
-    { name: "Name of Kadi", tenure: "2015-2020", image: "former-kadi-2" },
-  ]
+  const formerGrandKadis = pastKadisList.filter(k => k.roleCategory === 'grand-kadi')
 
   const currentKadis = [
     { id: "kadi-umar-nasir", name: "Hon. Kadi Umar Nasir Ahmad", appointmentPeriod: "Hon. Kadi (2017 – Date)", specialization: "Senior Appellate Kadi (02)", division: "Appellate Division 1 (Dutse)" },
@@ -151,25 +150,36 @@ export default function AboutPage() {
             <p className="text-xl text-gray-600">Honoring our distinguished past leaders</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {formerGrandKadis.map((kadi, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="p-8">
-                  <div className="w-40 h-40 mx-auto mb-6 rounded-lg overflow-hidden bg-gray-200">
-                    <Image
-                      src={`/placeholder.svg?height=160&width=160&query=professional portrait of former Nigerian Islamic Grand Kadi ${index + 1}`}
-                      alt={kadi.name}
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover"
-                    />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {formerGrandKadis.map((kadi) => (
+              <Card key={kadi.id} className="text-center rounded-2xl border border-gray-200 hover:border-court-gold-400 transition-all shadow-sm bg-white overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-court-sand-100 border-2 border-dashed border-court-gold-300 flex items-center justify-center text-court-green-900 shadow-inner">
+                    <User className="w-10 h-10 stroke-[1.5]" />
                   </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">{kadi.name}</h4>
-                  <Badge className="bg-red-100 text-red-800 mb-4">Former Grand Kadi</Badge>
-                  <p className="text-gray-600">Tenure: {kadi.tenure}</p>
+                  <h4 className="text-base font-bold text-court-slate-900 font-serif mb-1 leading-snug">{kadi.name}</h4>
+                  <Badge className={`${kadi.status === 'deceased' ? 'bg-amber-100 text-amber-900 border-amber-300' : 'bg-court-green-100 text-court-green-900 border-court-green-300'} text-[10px] font-bold mb-2`}>
+                    {kadi.status === 'deceased' ? 'In Memoriam' : 'Retired Grand Kadi'}
+                  </Badge>
+                  <p className="text-xs text-gray-500 font-medium">Tenure: {kadi.tenureYears}</p>
+                  {kadi.traditionalOrHonoraryTitles && (
+                    <p className="text-[11px] text-court-green-800 font-semibold mt-1 truncate">
+                      {kadi.traditionalOrHonoraryTitles}
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link 
+              href="/past-kadis"
+              className="inline-flex items-center justify-center border border-court-green-800 text-court-green-900 bg-white hover:bg-court-green-50 text-xs font-semibold px-6 py-2.5 rounded-md shadow-sm transition-colors"
+            >
+              <History className="w-3.5 h-3.5 mr-2" />
+              View Full Roll of Honor &amp; Historical Kadis Directory
+            </Link>
           </div>
         </div>
       </section>
@@ -241,6 +251,17 @@ export default function AboutPage() {
                 </div>
               </Card>
             ))}
+          </div>
+
+          {/* Link to Past Grand Kadis & Kadis */}
+          <div className="mt-12 text-center">
+            <Link 
+              href="/past-kadis"
+              className="inline-flex items-center justify-center border border-court-green-800 text-court-green-900 bg-white hover:bg-court-green-50 text-xs font-semibold px-6 py-2.5 rounded-md shadow-sm transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5 mr-2" />
+              Explore Roll of Honor: Past Grand Kadis &amp; Kadis (1991 – Present)
+            </Link>
           </div>
         </div>
       </section>

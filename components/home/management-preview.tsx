@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { 
   Building, 
   CreditCard, 
   Coins, 
-  Users 
+  Users,
+  User
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -17,7 +17,6 @@ interface StaffMember {
   role: string
   dept: string
   category: 'executive' | 'director' | 'finance' | 'cashier'
-  image: string
 }
 
 export default function ManagementPreview() {
@@ -25,88 +24,76 @@ export default function ManagementPreview() {
 
   const executiveLeadership: StaffMember[] = [
     {
-      name: 'Kabiru Gumel Esq.',
+      name: 'TBD',
       role: 'Acting Chief Registrar & Head of Administration',
       dept: 'Office of the Chief Registrar',
-      category: 'executive',
-      image: '/staff/kabiru-gumel.jpg'
+      category: 'executive'
     },
     {
-      name: 'Aliyu Muhammad',
+      name: 'TBD',
       role: 'Deputy Chief Registrar I (Administration)',
       dept: 'Court Administration Directorate',
-      category: 'director',
-      image: '/staff/aliyu-muhammad.jpg'
+      category: 'director'
     },
     {
-      name: 'Abdulrashid Alhassan',
+      name: 'TBD',
       role: 'Deputy Chief Registrar II (Litigation)',
       dept: 'Litigation & Appellate Directorate',
-      category: 'director',
-      image: '/staff/abdulrashid-alhassan.jpg'
+      category: 'director'
     },
     {
-      name: 'Isma\'il Sani',
+      name: 'TBD',
       role: 'Chief Inspector of Shari\'a Courts',
       dept: 'Shari\'a Courts Inspectorate',
-      category: 'director',
-      image: '/staff/ismail-sani.jpg'
+      category: 'director'
     },
     {
-      name: 'Umar Mallam',
+      name: 'TBD',
       role: 'Director, Planning, Research & Statistics (DPRS)',
       dept: 'Planning, Research & Statistics',
-      category: 'director',
-      image: '/staff/umar-mallam.jpg'
+      category: 'director'
     },
     {
-      name: 'Muhammad Lawan',
+      name: 'TBD',
       role: 'Director of Personnel Management (DPM)',
       dept: 'Personnel Management & HR',
-      category: 'director',
-      image: '/staff/muhammad-lawan.jpg'
+      category: 'director'
     },
     {
-      name: 'Abbas Rufa\'i Wangara (Abba Wangara)',
+      name: 'TBD',
       role: 'Director of Protocol & Publicity',
       dept: 'Protocol & Public Relations',
-      category: 'director',
-      image: '/staff/abba-wangara.jpg'
+      category: 'director'
     },
     {
-      name: 'Director of Admin & Finance (DAF)',
-      role: 'Director of Administration & Finance',
+      name: 'TBD',
+      role: 'Director of Administration & Finance (DAF)',
       dept: 'Directorate of Admin & Finance',
-      category: 'finance',
-      image: '/staff/director-admin-finance.jpg'
+      category: 'finance'
     },
     {
-      name: 'Deputy Director (Finance & Accounts)',
+      name: 'TBD',
       role: 'Deputy Director (Finance & Accounts)',
       dept: 'Finance & Accounts Directorate',
-      category: 'finance',
-      image: '/staff/deputy-director-finance.jpg'
+      category: 'finance'
     },
     {
-      name: 'Chief Accountant & Head of Treasury',
+      name: 'TBD',
       role: 'Chief Accountant & Head of Treasury',
       dept: 'Treasury & Ledger Division',
-      category: 'finance',
-      image: '/staff/chief-accountant.jpg'
+      category: 'finance'
     },
     {
-      name: 'Chief Cashier (Dutse Headquarters)',
+      name: 'TBD',
       role: 'Chief Cashier (Central Cash Office)',
       dept: 'Central Cash Office (Dutse HQ)',
-      category: 'cashier',
-      image: '/staff/chief-cashier.jpg'
+      category: 'cashier'
     },
     {
-      name: 'Assistant Cashier & Remita Desk Officer',
+      name: 'TBD',
       role: 'Assistant Cashier & Remita Desk Officer',
       dept: 'Revenue & Remita Verification Desk',
-      category: 'cashier',
-      image: '/staff/assistant-cashier-remita.jpg'
+      category: 'cashier'
     }
   ]
 
@@ -212,31 +199,35 @@ export default function ManagementPreview() {
           </button>
         </div>
 
-        {/* Leadership Cards Grid - Only Pictures, Names, and Designation */}
+        {/* Leadership Cards Grid - Placeholders for Photos, TBD Names & Designations */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {filteredStaff.map((officer, idx) => (
             <div 
               key={idx} 
               className="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md hover:border-court-gold-400 transition-all duration-300 flex flex-col"
             >
-              {/* Picture */}
-              <div className="relative w-full aspect-[4/5] bg-court-sand-100 overflow-hidden">
-                <Image
-                  src={officer.image}
-                  alt={officer.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                />
+              {/* Photo Placeholder */}
+              <div className="relative w-full aspect-[4/5] bg-gradient-to-b from-court-sand-50 to-court-sand-100/70 flex flex-col items-center justify-center p-6 text-center border-b border-gray-100">
+                <div className="w-20 h-20 rounded-full bg-white border-2 border-dashed border-court-gold-300 shadow-sm flex items-center justify-center text-court-slate-400 group-hover:text-court-green-800 group-hover:border-court-green-600 transition-colors">
+                  <User className="w-10 h-10 stroke-[1.5]" />
+                </div>
+                <span className="mt-3 text-[11px] font-semibold tracking-wide text-court-slate-600 uppercase bg-white/90 px-3 py-1 rounded-full border border-court-gold-200 shadow-2xs">
+                  Official Photo TBD
+                </span>
               </div>
 
               {/* Name and Designation Only */}
               <div className="p-4 sm:p-5 flex flex-col flex-grow justify-center text-center">
-                <h3 className="font-bold text-court-slate-900 text-sm sm:text-base leading-snug">
-                  {officer.name}
-                </h3>
-                <p className="text-xs font-semibold text-court-gold-700 mt-1.5 leading-snug">
+                <div className="inline-block mx-auto mb-1.5">
+                  <span className="px-3 py-0.5 rounded-full text-xs font-extrabold bg-amber-50 text-amber-800 border border-amber-200 uppercase tracking-wider">
+                    {officer.name}
+                  </span>
+                </div>
+                <h3 className="font-bold text-court-slate-900 text-sm leading-snug">
                   {officer.role}
+                </h3>
+                <p className="text-xs text-court-gold-700 mt-1 leading-snug">
+                  {officer.dept}
                 </p>
               </div>
             </div>

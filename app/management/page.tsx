@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { 
   Building, 
@@ -20,7 +19,8 @@ import {
   Landmark,
   BadgePercent,
   Award,
-  BookOpen
+  BookOpen,
+  User
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -47,11 +47,11 @@ export default function ManagementPage() {
 
   const chiefRegistrar: StaffProfile = {
     id: 'cr-gumel',
-    name: 'Kabiru Gumel Esq.',
+    name: 'TBD',
     position: 'Acting Chief Registrar & Head of Court Administration',
     category: 'executive',
     department: 'Office of the Chief Registrar, Headquarters, Dutse',
-    experience: '22+ years of Judicial Leadership & Court Administration',
+    experience: 'Head of Court Administration',
     phone: '+234 (0) 64 721 234',
     email: 'chiefregistrar@shariahcourt.jigawa.gov.ng',
     qualifications: 'LL.B (Hons), BL, Master of Laws (LL.M)',
@@ -63,50 +63,50 @@ export default function ManagementPage() {
     // --- JSC APPOINTED DIRECTORS & DEPUTY CHIEF REGISTRARS ---
     {
       id: 'dcr-admin-aliyu',
-      name: 'Aliyu Muhammad',
+      name: 'TBD',
       position: 'Deputy Chief Registrar I (Administration)',
       category: 'director',
       department: 'Directorate of Court Administration',
-      experience: '18+ years',
+      experience: 'Court Administration Directorate',
       phone: '+234 (0) 64 721 235',
       email: 'dcr.admin@shariahcourt.jigawa.gov.ng',
       qualifications: 'LL.B, BL, MPA (Public Administration)',
       responsibilities: 'Directs court administrative machinery, registry personnel coordination, inter-divisional logistics, judicial staff establishment, and execution of administrative directives of the JSC.',
-      officialNote: 'Confirmed at the 181st Meeting of the Jigawa State Judicial Service Commission.'
+      officialNote: 'Confirmed by the Jigawa State Judicial Service Commission.'
     },
     {
       id: 'dcr-litigation-alhassan',
-      name: 'Abdulrashid Alhassan',
+      name: 'TBD',
       position: 'Deputy Chief Registrar II (Litigation)',
       category: 'director',
       department: 'Directorate of Litigation & Appellate Proceedings',
-      experience: '17+ years',
+      experience: 'Litigation & Appellate Directorate',
       phone: '+234 (0) 64 721 236',
       email: 'dcr.litigation@shariahcourt.jigawa.gov.ng',
       qualifications: 'LL.B (Common & Islamic Law), BL',
       responsibilities: 'Superintends appellate case filings, compilation and settlement of records of proceedings, daily cause list supervision before the Grand Kadi panels, and enforcement of court civil procedure rules.',
-      officialNote: 'Confirmed at the 181st Meeting of the Jigawa State Judicial Service Commission.'
+      officialNote: 'Confirmed by the Jigawa State Judicial Service Commission.'
     },
     {
       id: 'chief-inspector-ismail',
-      name: 'Isma\'il Sani',
+      name: 'TBD',
       position: 'Chief Inspector of Shari\'a Courts',
       category: 'director',
       department: 'Shari\'a Courts Inspectorate Division',
-      experience: '20+ years',
+      experience: 'Shari\'a Courts Inspectorate',
       phone: '+234 (0) 64 721 237',
       email: 'inspectorate@shariahcourt.jigawa.gov.ng',
       qualifications: 'Diploma in Shari\'a Law, LL.B, BL',
       responsibilities: 'Leads statutory inspections and judicial ethics monitoring of all lower and Upper Shari\'a Courts across the 27 Local Government Areas of Jigawa State, reviewing case dockets, records maintenance, and procedural integrity.',
-      officialNote: 'Confirmed at the 181st Meeting of the Jigawa State Judicial Service Commission.'
+      officialNote: 'Confirmed by the Jigawa State Judicial Service Commission.'
     },
     {
       id: 'deputy-inspector-isyaku',
-      name: 'Kabiru Isyaku Gwaram',
+      name: 'TBD',
       position: 'Deputy Chief Inspector of Shari\'a Courts',
       category: 'director',
       department: 'Shari\'a Courts Inspectorate Division',
-      experience: '15+ years',
+      experience: 'Shari\'a Courts Inspectorate',
       phone: '+234 (0) 64 721 238',
       email: 'deputy.inspector@shariahcourt.jigawa.gov.ng',
       qualifications: 'Diploma in Islamic Jurisprudence, LL.B',
@@ -115,37 +115,37 @@ export default function ManagementPage() {
     },
     {
       id: 'dir-prs-umar',
-      name: 'Umar Mallam',
+      name: 'TBD',
       position: 'Director of Planning, Research and Statistics (DPRS)',
       category: 'director',
       department: 'Directorate of Planning, Research & Statistics',
-      experience: '16+ years',
+      experience: 'Planning, Research & Statistics',
       phone: '+234 (0) 64 721 239',
       email: 'dprs@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.Sc Economics / Statistics, M.Sc Planning',
       responsibilities: 'Heads judicial data analytics, quarterly and annual statistical documentation of instituted and disposed appeals, judicial infrastructure development, court law library modernization, and legal research.',
-      officialNote: 'Confirmed at the 181st Meeting of the Jigawa State Judicial Service Commission.'
+      officialNote: 'Confirmed by the Jigawa State Judicial Service Commission.'
     },
     {
       id: 'dir-pm-lawan',
-      name: 'Muhammad Lawan',
+      name: 'TBD',
       position: 'Director of Personnel Management (DPM)',
       category: 'director',
       department: 'Directorate of Personnel Management & Human Resources',
-      experience: '19+ years',
+      experience: 'Personnel Management & HR',
       phone: '+234 (0) 64 721 240',
       email: 'dpm@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.Sc Public Administration, FCPA',
       responsibilities: 'Oversees staff career progression, personnel establishment records, promotions, training institutes, welfare programs, and disciplinary affairs in liaison with the State Judicial Service Commission.',
-      officialNote: 'Confirmed at the 181st Meeting of the Jigawa State Judicial Service Commission.'
+      officialNote: 'Confirmed by the Jigawa State Judicial Service Commission.'
     },
     {
       id: 'dir-publicity-wangara',
-      name: 'Abbas Rufa\'i Wangara (Abba Wangara)',
+      name: 'TBD',
       position: 'Director of Protocol and Publicity (Judiciary Spokesperson)',
       category: 'director',
       department: 'Directorate of Protocol, Public Relations & Information',
-      experience: '16+ years',
+      experience: 'Protocol & Public Relations',
       phone: '+234 (0) 64 721 241',
       email: 'spokesperson@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.A Mass Communication, Member NIPR',
@@ -156,11 +156,11 @@ export default function ManagementPage() {
     // --- FINANCE & ACCOUNTS LEADERSHIP (DAF, DEPUTIES, TREASURY, AUDIT) ---
     {
       id: 'daf-finance-lead',
-      name: 'Director of Administration & Finance (DAF)',
+      name: 'TBD',
       position: 'Director of Administration & Finance (DAF)',
       category: 'finance',
       department: 'Directorate of Administration & Finance',
-      experience: '18+ years',
+      experience: 'Administration & Finance',
       phone: '+234 (0) 64 721 242',
       email: 'daf@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.Sc Accounting / Finance, CNA / ANAN, ACTI',
@@ -169,11 +169,11 @@ export default function ManagementPage() {
     },
     {
       id: 'deputy-dir-finance',
-      name: 'Deputy Director (Finance & Accounts)',
+      name: 'TBD',
       position: 'Deputy Director (Finance & Accounts)',
       category: 'finance',
       department: 'Finance & Accounts Directorate',
-      experience: '14+ years',
+      experience: 'Finance & Accounts Directorate',
       phone: '+234 (0) 64 721 243',
       email: 'finance.accounts@shariahcourt.jigawa.gov.ng',
       qualifications: 'HND / B.Sc Accounting, PGD Financial Management',
@@ -182,11 +182,11 @@ export default function ManagementPage() {
     },
     {
       id: 'deputy-dir-admin',
-      name: 'Deputy Director (Administration & Establishment)',
+      name: 'TBD',
       position: 'Deputy Director (Administration & Establishment)',
       category: 'finance',
       department: 'Administration & Establishment Division',
-      experience: '15+ years',
+      experience: 'Administration & Establishment',
       phone: '+234 (0) 64 721 244',
       email: 'admin.establishment@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.Sc Public Administration, MPA',
@@ -195,11 +195,11 @@ export default function ManagementPage() {
     },
     {
       id: 'chief-accountant-treasury',
-      name: 'Chief Accountant & Head of Treasury',
+      name: 'TBD',
       position: 'Chief Accountant & Head of Treasury',
       category: 'finance',
       department: 'Treasury & Ledger Division',
-      experience: '13+ years',
+      experience: 'Treasury & Ledger Division',
       phone: '+234 (0) 64 721 245',
       email: 'treasury@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.Sc Accounting, Certified National Accountant (CNA/ANAN)',
@@ -208,11 +208,11 @@ export default function ManagementPage() {
     },
     {
       id: 'head-internal-audit',
-      name: 'Head of Internal Audit',
+      name: 'TBD',
       position: 'Head of Internal Audit',
       category: 'finance',
       department: 'Internal Audit Directorate',
-      experience: '14+ years',
+      experience: 'Internal Audit Directorate',
       phone: '+234 (0) 64 721 246',
       email: 'audit@shariahcourt.jigawa.gov.ng',
       qualifications: 'B.Sc Accounting, ACA / CNA (In View)',
@@ -223,11 +223,11 @@ export default function ManagementPage() {
     // --- CASH OFFICES & COURT CASHIERS ---
     {
       id: 'chief-cashier-hq',
-      name: 'Chief Cashier (Central Cash Office)',
+      name: 'TBD',
       position: 'Chief Cashier (Central Cash Office - Dutse HQ)',
       category: 'cashier',
       department: 'Central Cash Office (Dutse Headquarters)',
-      experience: '15+ years',
+      experience: 'Central Cash Office',
       phone: '+234 (0) 64 721 247',
       email: 'chiefcashier@shariahcourt.jigawa.gov.ng',
       qualifications: 'Diploma in Banking & Finance, B.Sc Finance',
@@ -236,11 +236,11 @@ export default function ManagementPage() {
     },
     {
       id: 'senior-cashier-zonal',
-      name: 'Senior Cashier & Zonal Revenue Collector',
+      name: 'TBD',
       position: 'Senior Cashier & Zonal Revenue Collector',
       category: 'cashier',
       department: 'Zonal Cash & Revenue Operations',
-      experience: '10+ years',
+      experience: 'Zonal Cash Operations',
       phone: '+234 (0) 64 721 248',
       email: 'revenue.zonal@shariahcourt.jigawa.gov.ng',
       qualifications: 'OND / HND Financial Studies',
@@ -249,11 +249,11 @@ export default function ManagementPage() {
     },
     {
       id: 'assistant-cashier-remita',
-      name: 'Assistant Cashier & Remita Desk Officer',
+      name: 'TBD',
       position: 'Assistant Cashier & Remita Desk Officer',
       category: 'cashier',
       department: 'Revenue & Remita Verification Desk',
-      experience: '7+ years',
+      experience: 'Revenue & Remita Desk',
       phone: '+234 (0) 64 721 249',
       email: 'remita.desk@shariahcourt.jigawa.gov.ng',
       qualifications: 'Diploma in Accounting Technology, NCE',
@@ -262,11 +262,11 @@ export default function ManagementPage() {
     },
     {
       id: 'zonal-cashiers-rep',
-      name: 'Divisional Zonal Cashiers (Judicial Divisions)',
+      name: 'TBD',
       position: 'Divisional Zonal Cashiers (Hadejia, Gumel, Kazaure, Ringim, Birnin Kudu)',
       category: 'cashier',
       department: 'Divisional Registries Cash Desks',
-      experience: '8+ years Average',
+      experience: 'Divisional Registries',
       phone: '+234 (0) 64 721 250',
       email: 'zonal.cashiers@shariahcourt.jigawa.gov.ng',
       qualifications: 'Diplomas in Public Finance & Accounting',
@@ -278,7 +278,7 @@ export default function ManagementPage() {
   const departments = [
     {
       name: 'Office of the Chief Registrar',
-      head: 'Kabiru Gumel Esq. (Acting Chief Registrar)',
+      head: 'TBD (Acting Chief Registrar)',
       staff: 22,
       category: 'Executive & Strategic Oversight',
       functions: [
@@ -290,7 +290,7 @@ export default function ManagementPage() {
     },
     {
       name: 'Directorates of Administration & Litigation (DCR I & II)',
-      head: 'Aliyu Muhammad (DCR I) & Abdulrashid Alhassan (DCR II)',
+      head: 'TBD (DCR I) & TBD (DCR II)',
       staff: 28,
       category: 'Appellate Operations & Registry Leadership',
       functions: [
@@ -302,7 +302,7 @@ export default function ManagementPage() {
     },
     {
       name: 'Shari\'a Courts Inspectorate Division',
-      head: 'Isma\'il Sani (Chief Inspector) & Kabiru Isyaku Gwaram (Deputy)',
+      head: 'TBD (Chief Inspector) & TBD (Deputy)',
       staff: 18,
       category: 'Compliance, Ethics & Court Oversight',
       functions: [
@@ -314,7 +314,7 @@ export default function ManagementPage() {
     },
     {
       name: 'Directorate of Administration & Finance (DAF)',
-      head: 'Director of Administration & Finance (DAF)',
+      head: 'TBD (Director of Administration & Finance)',
       staff: 26,
       category: 'Fiscal Management & State Treasury Liaison',
       functions: [
@@ -326,7 +326,7 @@ export default function ManagementPage() {
     },
     {
       name: 'Planning, Research & Statistics (DPRS)',
-      head: 'Umar Mallam (Director, PRS)',
+      head: 'TBD (Director, PRS)',
       staff: 12,
       category: 'Judicial Data & Court Expansion',
       functions: [
@@ -338,7 +338,7 @@ export default function ManagementPage() {
     },
     {
       name: 'Central Cash Office & Revenue Desks',
-      head: 'Chief Cashier & Senior Zonal Collectors',
+      head: 'TBD (Chief Cashier & Senior Zonal Collectors)',
       staff: 15,
       category: 'Revenue Collection & Remita Validation',
       functions: [
@@ -408,16 +408,15 @@ export default function ManagementPage() {
               <div className="grid grid-cols-1 md:grid-cols-12">
                 {/* Photo Col */}
                 <div className="md:col-span-4 bg-gradient-to-b from-court-green-950 to-court-green-900 p-5 sm:p-6 flex flex-col items-center justify-center text-center text-white">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-white p-1 border-4 border-court-gold-400 shadow-md mb-4 relative">
-                    <Image
-                      src="/staff/kabiru-gumel.jpg"
-                      alt={chiefRegistrar.name}
-                      width={128}
-                      height={128}
-                      className="w-full h-full object-cover object-top rounded-full"
-                    />
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-white/10 p-2 border-4 border-court-gold-400 shadow-md mb-4 flex flex-col items-center justify-center">
+                    <User className="w-14 h-14 text-court-sand-200 stroke-[1.5]" />
+                    <span className="text-[9px] font-bold text-court-gold-300 uppercase tracking-wider mt-1">Photo TBD</span>
                   </div>
-                  <h3 className="font-bold text-base text-white">{chiefRegistrar.name}</h3>
+                  <div className="inline-block mb-1">
+                    <span className="px-3 py-0.5 rounded-full text-xs font-extrabold bg-amber-400/20 text-court-gold-300 border border-court-gold-400/50 uppercase tracking-wider">
+                      {chiefRegistrar.name}
+                    </span>
+                  </div>
                   <Badge className="bg-court-gold-500 text-court-green-950 font-bold text-[10px] mt-1 mb-2">
                     Acting Chief Registrar
                   </Badge>

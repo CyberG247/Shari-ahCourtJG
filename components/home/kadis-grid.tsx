@@ -265,14 +265,12 @@ export default function KadisGrid() {
 
         {/* Bottom Navigation Link */}
         <div className="mt-14 text-center">
-          <Link href="/about">
-            <Button 
-              variant="outline" 
-              className="border-court-green-800 text-court-green-900 hover:bg-court-green-50 text-xs font-semibold px-6 shadow-sm"
-            >
-              <BookOpen className="w-3.5 h-3.5 mr-2" />
-              View Judicial Bench History & Roll of Former Grand Kadis
-            </Button>
+          <Link 
+            href="/past-kadis"
+            className="inline-flex items-center justify-center border border-court-green-800 text-court-green-900 bg-white hover:bg-court-green-50 text-xs font-semibold px-6 py-2.5 rounded-md shadow-sm transition-colors"
+          >
+            <BookOpen className="w-3.5 h-3.5 mr-2" />
+            View Judicial Bench History &amp; Roll of Former Grand Kadis
           </Link>
         </div>
       </div>

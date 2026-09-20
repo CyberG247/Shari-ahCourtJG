@@ -17,7 +17,8 @@ import {
   BookOpen,
   Award,
   Clock,
-  Sparkles
+  Sparkles,
+  History
 } from 'lucide-react'
 import { useAccessibility } from '@/components/accessibility/accessibility-provider'
 import { Button } from '@/components/ui/button'
@@ -104,6 +105,7 @@ export default function CourtHeader() {
             >
               <button
                 type="button"
+                onClick={() => setActiveDropdown(prev => prev === 'about' ? null : 'about')}
                 className={`flex items-center gap-1 px-3 py-2 rounded-md transition-colors ${
                   activeDropdown === 'about' ? 'text-court-green-800 bg-court-green-50' : 'hover:text-court-green-800 hover:bg-court-green-50'
                 }`}
@@ -117,6 +119,7 @@ export default function CourtHeader() {
                 <div className="absolute top-full left-0 w-72 bg-white rounded-xl shadow-judicial-gold border border-court-gold-200 p-2 z-50 animate-in fade-in-50 slide-in-from-top-2 duration-200">
                   <Link 
                     href="/about" 
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors"
                   >
                     <BookOpen className="w-5 h-5 text-court-green-700 mt-0.5 flex-shrink-0" />
@@ -127,6 +130,7 @@ export default function CourtHeader() {
                   </Link>
                   <Link 
                     href="/courts" 
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors"
                   >
                     <Scale className="w-5 h-5 text-court-gold-600 mt-0.5 flex-shrink-0" />
@@ -137,6 +141,7 @@ export default function CourtHeader() {
                   </Link>
                   <Link 
                     href="/management" 
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors"
                   >
                     <Users className="w-5 h-5 text-court-green-700 mt-0.5 flex-shrink-0" />
@@ -157,6 +162,7 @@ export default function CourtHeader() {
             >
               <button
                 type="button"
+                onClick={() => setActiveDropdown(prev => prev === 'bench' ? null : 'bench')}
                 className={`flex items-center gap-1 px-3 py-2 rounded-md transition-colors ${
                   activeDropdown === 'bench' ? 'text-court-green-800 bg-court-green-50' : 'hover:text-court-green-800 hover:bg-court-green-50'
                 }`}
@@ -170,6 +176,7 @@ export default function CourtHeader() {
                 <div className="absolute top-full left-0 w-80 bg-white rounded-xl shadow-judicial-gold border border-court-gold-200 p-2 z-50 animate-in fade-in-50 slide-in-from-top-2 duration-200">
                   <Link 
                     href="/#grand-kadi" 
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors"
                   >
                     <Award className="w-5 h-5 text-court-gold-600 mt-0.5 flex-shrink-0" />
@@ -180,6 +187,7 @@ export default function CourtHeader() {
                   </Link>
                   <Link 
                     href="/#honorable-kadis" 
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors"
                   >
                     <Users className="w-5 h-5 text-court-green-700 mt-0.5 flex-shrink-0" />
@@ -190,12 +198,24 @@ export default function CourtHeader() {
                   </Link>
                   <Link 
                     href="/services/judgment-archives" 
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors"
                   >
                     <FileText className="w-5 h-5 text-court-green-700 mt-0.5 flex-shrink-0" />
                     <div>
                       <div className="text-sm font-semibold">Appellate Law Reports</div>
                       <div className="text-xs text-gray-500">Search landmark Shari'ah decisions & precedents</div>
+                    </div>
+                  </Link>
+                  <Link 
+                    href="/past-kadis" 
+                    onClick={() => setActiveDropdown(null)}
+                    className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-court-green-50 text-gray-800 hover:text-court-green-900 transition-colors border-t border-gray-100 mt-1"
+                  >
+                    <History className="w-5 h-5 text-court-gold-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <div className="text-sm font-semibold text-court-green-900">Roll of Honor (Past Kadis)</div>
+                      <div className="text-xs text-gray-500">Retired &amp; deceased jurists since 1991</div>
                     </div>
                   </Link>
                 </div>
@@ -295,6 +315,13 @@ export default function CourtHeader() {
                 className="block px-3 py-2 rounded-md hover:bg-court-green-50 hover:text-court-green-800"
               >
                 {t('theBench', 'The Bench (Honorable Kadis)')}
+              </Link>
+              <Link 
+                href="/past-kadis" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md hover:bg-court-green-50 hover:text-court-green-800 text-court-gold-700 font-semibold pl-6 text-xs"
+              >
+                ★ Roll of Honor: Past Grand Kadis &amp; Kadis
               </Link>
               <Link 
                 href="/services" 

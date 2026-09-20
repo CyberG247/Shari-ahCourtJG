@@ -11,7 +11,8 @@ import {
   ExternalLink, 
   Scale, 
   X,
-  FileCheck
+  FileCheck,
+  History
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { 
@@ -161,6 +162,15 @@ export default function GrandKadiSection() {
                       <BookOpen className="w-3.5 h-3.5 mr-1.5 text-court-green-700" />
                       Read Address
                     </Button>
+
+                    <Link
+                      href="/past-kadis"
+                      className="inline-flex items-center gap-1.5 border border-court-gold-600/50 bg-court-gold-50 hover:bg-court-gold-100 text-court-green-950 font-semibold text-xs px-3.5 py-2 rounded-lg shadow-sm transition-colors"
+                      title="View Former Grand Kadis and Historical Bench"
+                    >
+                      <History className="w-3.5 h-3.5 text-court-gold-700" />
+                      <span>Past Grand Kadis</span>
+                    </Link>
                   </div>
                 </div>
               </div>
